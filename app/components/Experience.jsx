@@ -150,7 +150,7 @@ function Experience() {
         <div style={expStyles.list}>
           {experience.map((e, i) => (
             <Reveal key={i} delay={Math.min(i * 60, 360)}>
-              <div style={expStyles.item}>
+              <div data-grid="exp-item" style={expStyles.item}>
               <span style={expStyles.date}>
                 {e.date}
                 {e.current && <span style={expStyles.current} title="Current"></span>}
