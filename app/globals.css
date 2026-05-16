@@ -1,0 +1,411 @@
+/* =========================================================================
+   Portfolio Design System — Tokens
+   Resend-inspired: true-black canvas, serif display, atmospheric accent glows.
+   ========================================================================= */
+
+/* ---- Fonts -------------------------------------------------------------- */
+/* Body / UI: TT Commons (brand font, shipped in /fonts).
+   Display:   DM Serif Display (substituting for Domaine Display — see README).
+   Code:      Geist Mono (Google Fonts).                                       */
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist+Mono:wght@400;500&display=swap");
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/TT_Commons_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Synthesize 500/600 weights from the single Regular file we have. */
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/TT_Commons_Regular.otf") format("opentype");
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+  font-synthesis: weight;
+}
+
+:root {
+  /* ====================================================================
+     COLOR — BRAND & ACCENT (the brand's brightest pixel is white)
+     ==================================================================== */
+  --primary-white:    #fcfdff;   /* primary CTA, hero text */
+  --surface-light:    #f1f7fe;   /* CTA pressed state */
+  --primary-on:       #000000;   /* label on white CTA */
+
+  /* ---- SURFACE -------------------------------------------------------- */
+  --canvas:           #000000;   /* default page background */
+  --surface-card:     #0a0a0c;   /* feature cards, inputs */
+  --surface-elevated: #101012;   /* featured tier, ghost button */
+  --surface-deep:     #06060a;   /* code wells */
+
+  /* ---- TEXT ----------------------------------------------------------- */
+  --ink:              #fcfdff;
+  --body:             rgba(252, 253, 255, 0.86);
+  --charcoal:         rgba(252, 253, 255, 0.70);
+  --mute:             #a1a4a5;
+  --ash:              #888e90;
+  --stone:            #464a4d;
+
+  /* ---- ATMOSPHERIC ACCENTS (inline highlights) ----------------------- */
+  --accent-orange:    #ff801f;
+  --accent-yellow:    #ffc53d;
+  --accent-blue:      #3b9eff;
+  --accent-green:     #11ff99;
+  --accent-red:       #ff2047;
+
+  /* ---- ATMOSPHERIC GLOWS (low-opacity radial washes ONLY) ------------ */
+  --glow-orange:      rgba(255, 89, 0, 0.22);
+  --glow-yellow:      rgba(255, 197, 61, 0.20);
+  --glow-blue:        rgba(0, 117, 255, 0.34);
+  --glow-green:       rgba(34, 255, 153, 0.18);
+  --glow-red:         rgba(255, 32, 71, 0.22);
+  --glow-slate:       rgba(120, 130, 150, 0.18);
+
+  /* ---- BORDERS / HAIRLINES ------------------------------------------- */
+  --hairline:         rgba(252, 253, 255, 0.06);
+  --hairline-strong:  rgba(252, 253, 255, 0.10);
+  --hairline-bright:  rgba(252, 253, 255, 0.16);
+
+  /* ====================================================================
+     TYPE — FAMILIES
+     ==================================================================== */
+  --font-serif:  "DM Serif Display", "Domaine Display", "Times New Roman", serif;
+  --font-sans:   "TT Commons", "ABC Favorit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-ui:     "TT Commons", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:   "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ====================================================================
+     SPACING — 4px base. `section` and `band` drive editorial dark rhythm.
+     ==================================================================== */
+  --space-xxs:     2px;
+  --space-xs:      4px;
+  --space-sm:      8px;
+  --space-md:     12px;
+  --space-lg:     16px;
+  --space-xl:     24px;
+  --space-xxl:    32px;
+  --space-xxxl:   48px;
+  --space-section: 96px;
+  --space-band:  128px;
+
+  /* ====================================================================
+     RADII
+     ==================================================================== */
+  --radius-none: 0;
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   8px;     /* buttons */
+  --radius-lg:  12px;     /* cards */
+  --radius-xl:  16px;
+  --radius-full: 9999px;  /* pills */
+
+  /* ====================================================================
+     ELEVATION — translucent borders carry depth (not shadows).
+     ==================================================================== */
+  --elev-0: transparent;
+  --elev-1: inset 0 0 0 1px var(--hairline-strong);
+  --elev-2: inset 0 0 0 1px var(--hairline-bright);
+  --elev-3: inset 0 0 0 1px var(--hairline-bright),
+            inset 0 1px 0 0 rgba(252,253,255,0.04);
+
+  /* ====================================================================
+     MOTION
+     ==================================================================== */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:   120ms;
+  --dur-med:    240ms;
+  --dur-slow:   480ms;
+}
+
+/* ==========================================================================
+   SEMANTIC TYPE — drop classes on elements; uses tokens above.
+   ========================================================================== */
+
+.t-display-xxl {
+  font-family: var(--font-serif);
+  font-size: 96px;
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.96px;
+  color: var(--ink);
+}
+.t-display-xl {
+  font-family: var(--font-serif);
+  font-size: 76.8px;
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.768px;
+  color: var(--ink);
+}
+.t-display-lg {
+  font-family: var(--font-sans);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -2.8px;
+  color: var(--ink);
+}
+.t-heading-md {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.4px;
+  color: var(--ink);
+}
+.t-subtitle {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--body);
+}
+.t-body-md {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
+  color: var(--body);
+}
+.t-body-sm {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  color: var(--charcoal);
+}
+.t-button-md {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  letter-spacing: 0;
+}
+.t-button-sm {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  letter-spacing: 0.35px;
+}
+.t-caption {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ash);
+}
+.t-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   BASE — apply tokens to common elements (opt-in via .ds-scope)
+   ========================================================================== */
+.ds-scope {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.ds-scope h1 { font: 400 96px/1 var(--font-serif); letter-spacing: -0.96px; }
+.ds-scope h2 { font: 400 56px/1.05 var(--font-serif); letter-spacing: -1.6px; }
+.ds-scope h3 { font: 500 24px/1.3 var(--font-sans); letter-spacing: -0.4px; }
+.ds-scope p  { font: 400 16px/1.55 var(--font-sans); color: var(--body); }
+.ds-scope a  { color: var(--accent-blue); text-decoration: none; }
+.ds-scope a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ds-scope code { font: 400 13px/1.6 var(--font-mono); color: var(--ink); }
+
+
+/* Component-local styles for the portfolio kit.
+   Tokens live in /colors_and_type.css. Keep this file thin. */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--canvas); color: var(--ink); }
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection { background: rgba(59,158,255,0.35); color: var(--ink); }
+
+a { color: inherit; text-decoration: none; }
+
+/* shared layout helpers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+@media (max-width: 767px) { .container { padding: 0 20px; } }
+
+.section {
+  padding: var(--space-section) 0;
+}
+.band { padding: var(--space-band) 0; }
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: "";
+  width: 16px; height: 1px; background: var(--mute);
+}
+
+.glow-layer {
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* primary button -- shared everywhere */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--radius-md);
+  font: 500 14px/1 var(--font-ui);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
+  text-decoration: none;
+}
+.btn--primary { background: var(--primary-white); color: var(--primary-on); }
+.btn--primary:hover { background: var(--surface-light); }
+.btn--primary:active { opacity: 0.92; }
+.btn--ghost {
+  background: var(--surface-elevated);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--hairline-strong);
+}
+.btn--ghost:hover { box-shadow: inset 0 0 0 1px var(--hairline-bright); }
+.btn--pill { border-radius: var(--radius-full); padding: 0 20px; }
+
+.btn svg { width: 14px; height: 14px; }
+
+/* inline accent highlight (a single word, glow visible) */
+.hl {
+  color: var(--accent-orange);
+  text-shadow: 0 0 24px rgba(255,128,31,0.55);
+}
+.hl--blue { color: var(--accent-blue); text-shadow: 0 0 24px rgba(59,158,255,0.5); }
+.hl--green { color: var(--accent-green); text-shadow: 0 0 24px rgba(17,255,153,0.45); }
+
+.hairline { height: 1px; background: var(--hairline-strong); border: 0; margin: 0; }
+
+/* ============================================================
+   ANIMATIONS — keep them subtle, fast, and respect reduced motion.
+   ============================================================ */
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translate3d(0, 32px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.78; transform: scale(1.05); }
+}
+
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 8px currentColor; }
+  50%      { box-shadow: 0 0 14px currentColor; }
+}
+
+.hero-anim-1 { animation: hero-fade-up 900ms cubic-bezier(0.16,1,0.3,1) 80ms both; }
+.hero-anim-2 { animation: hero-fade-up 900ms cubic-bezier(0.16,1,0.3,1) 220ms both; }
+.hero-anim-3 { animation: hero-fade-up 900ms cubic-bezier(0.16,1,0.3,1) 360ms both; }
+.hero-anim-4 { animation: hero-fade-up 900ms cubic-bezier(0.16,1,0.3,1) 500ms both; }
+
+.glow-breathe { animation: glow-breathe 9s ease-in-out infinite; will-change: opacity, transform; }
+
+/* underline-on-hover for nav and footer links */
+.link-hover { position: relative; transition: color 120ms ease; }
+.link-hover::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%; bottom: -2px;
+  height: 1px; background: currentColor;
+  transition: right 240ms cubic-bezier(0.16,1,0.3,1);
+}
+.link-hover:hover { color: var(--ink); }
+.link-hover:hover::after { right: 0; }
+
+/* Cards: gentle lift on hover via inset-border brightness (no transform). */
+.work-card-img {
+  transition: transform 600ms cubic-bezier(0.16,1,0.3,1);
+}
+
+/* Filter chips swap animation in SelectedWork */
+@keyframes card-in {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.card-fade-in { animation: card-in 500ms cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Hero blinking cursor */
+@keyframes blink {
+  0%, 50%   { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+
+/* ============================================================
+   Layout — responsive grid overrides (was inline in index.html)
+   ============================================================ */
+@media (max-width: 1023px) {
+  h1, h2 { letter-spacing: -0.6px !important; }
+  [data-grid="work-grid"]       { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [data-grid="highlights-grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 900px) {
+  [data-grid="skills-grid"]     { grid-template-columns: 1fr !important; }
+  [data-grid="about"]           { grid-template-columns: 1fr !important; gap: 32px !important; }
+  [data-grid="about"] aside     { max-width: 220px; }
+  [data-grid="contact"]         { grid-template-columns: 1fr !important; gap: 32px !important; }
+  [data-grid="footer"]          { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  #experience [style*="grid-template-columns: 160px"] { grid-template-columns: 140px 1fr !important; gap: 12px !important; }
+  #experience [style*="grid-template-columns: 160px"] > :nth-child(3),
+  #experience [style*="grid-template-columns: 160px"] > :nth-child(4) { display: none !important; }
+}
+@media (max-width: 700px) {
+  [data-grid="work-grid"]       { grid-template-columns: 1fr !important; }
+  [data-grid="highlights-grid"] { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 600px) {
+  [data-grid="footer"]          { grid-template-columns: 1fr !important; }
+}
