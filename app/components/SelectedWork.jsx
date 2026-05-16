@@ -181,7 +181,7 @@ const projects = [
     kindColor: "#11ff99",
     year: 2025,
     title: "Soul Swap",
-    desc: "Solo game jam submission for my Game Development course at Fasilkom UI. About swapping souls between planets.",
+    desc: "Solo game jam submission for my Game Development course at Fasilkom UI. About swapping souls between robots.",
     img: "/assets/projects/soul-swap.png",
     stack: "Godot · Aseprite",
     url: "https://heisenbergers.itch.io/soulswap",
