@@ -408,4 +408,20 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 600px) {
   [data-grid="footer"]          { grid-template-columns: 1fr !important; }
+
+  /* Experience: stack date then role (1 column) on phones */
+  #experience [style*="grid-template-columns: 160px"] {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+
+  /* Contact: scale heading to fit phone viewport */
+  #contact h2 {
+    font-size: clamp(26px, 8vw, 48px) !important;
+    letter-spacing: -0.3px !important;
+    line-height: 1.05 !important;
+  }
+
+  /* Contact form: stack name/email fields vertically */
+  [data-grid="contact-name-email"] { grid-template-columns: 1fr !important; }
 }

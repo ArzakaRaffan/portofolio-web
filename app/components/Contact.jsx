@@ -125,7 +125,7 @@ function Contact() {
               </div>
             ) : (
               <React.Fragment>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div data-grid="contact-name-email" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div style={contactStyles.field}>
                     <span style={contactStyles.label}>Name</span>
                     <input style={fieldStyle("name")} placeholder="Sam Rivera"
