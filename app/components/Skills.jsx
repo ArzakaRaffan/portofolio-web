@@ -134,10 +134,11 @@ function Skills() {
                 <p style={skillStyles.groupNote}>{g.note}</p>
                 <div style={skillStyles.logoRow}>
                   {g.tech.map((t) => (
-                    <div key={t.name} style={skillStyles.logoCell} title={t.name}>
+                    <div key={t.name} style={skillStyles.logoCell} className="skill-logo-cell" title={t.name}>
                       <img src={`https://cdn.simpleicons.org/${t.slug}/fcfdff`}
                            alt={t.name}
                            style={skillStyles.logo}
+                           className="skill-logo-img"
                            loading="lazy" />
                       <span style={skillStyles.logoLabel}>{t.name}</span>
                     </div>

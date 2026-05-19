@@ -63,8 +63,8 @@ function About() {
       <div style={aboutStyles.inner} data-grid="about">
         <Reveal>
           <aside style={aboutStyles.side}>
-          <div style={aboutStyles.portrait}>
-            <img src="/assets/portrait.jpeg" alt="Arzaka Raffan Mawardi" style={aboutStyles.portraitImg} />
+          <div style={aboutStyles.portrait} className="portrait-container">
+            <img src="/assets/portrait.jpeg" alt="Arzaka Raffan Mawardi" style={aboutStyles.portraitImg} className="portrait-img" />
           </div>
           <div style={aboutStyles.meta}>
             <div style={aboutStyles.metaRow}><span style={aboutStyles.metaKey}>Based in</span><span style={aboutStyles.metaVal}>Depok, ID</span></div>

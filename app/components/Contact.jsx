@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Icon, StatusPill } from "./Icons";
+import { Reveal } from "./Animations";
 
 const contactStyles = {
   section: { position: "relative", padding: "120px 0", overflow: "hidden", borderTop: "1px solid var(--hairline-strong)" },
@@ -98,6 +99,7 @@ function Contact() {
       <div style={contactStyles.glow} />
       <div style={contactStyles.inner}>
         <div style={contactStyles.grid} data-grid="contact">
+          <Reveal scale={0.98}>
           <div style={contactStyles.left}>
             <span style={contactStyles.eyebrow}><span style={contactStyles.eyebrowLine}></span> Contact</span>
             <h2 style={contactStyles.h}>
@@ -112,6 +114,8 @@ function Contact() {
               <Icon name="mail" size={16} /> arzakaraffan@gmail.com
             </a>
           </div>
+          </Reveal>
+          <Reveal delay={140} scale={0.98}>
           <form style={contactStyles.card} onSubmit={(e) => { e.preventDefault(); setSent(true); }} data-grid="contact-form">
             {sent ? (
               <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "24px 4px" }}>
@@ -167,6 +171,7 @@ function Contact() {
               </React.Fragment>
             )}
           </form>
+          </Reveal>
         </div>
       </div>
     </section>

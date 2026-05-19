@@ -122,7 +122,12 @@ function Highlights() {
                 <Wrapper {...wrapperProps}
                          style={{ ...hlStyles.card, ...(hov === i ? hlStyles.cardHover : {}) }}
                          onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(-1)}>
-                <div style={{ ...hlStyles.cardGlow, background: h.glow }}></div>
+                <div style={{
+                  ...hlStyles.cardGlow, background: h.glow,
+                  transition: "opacity 300ms ease, transform 400ms cubic-bezier(0.16,1,0.3,1)",
+                  opacity: hov === i ? 0.72 : 0.5,
+                  transform: hov === i ? "scale(1.18)" : "scale(1)",
+                }}></div>
                 <div style={hlStyles.inner2}>
                   <span style={hlStyles.kind}>{h.kind}</span>
                   <h3 style={hlStyles.rank}>{h.rank}</h3>

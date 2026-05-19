@@ -114,7 +114,7 @@ function Nav({ onCTAClick }) {
         </div>
       </nav>
       {isMobile && open && (
-        <div style={navStyles.drawer}>
+        <div style={navStyles.drawer} className="nav-drawer-in">
           {items.map((it) => (
             <a key={it.href} href={it.href} style={navStyles.drawerLink} onClick={() => setOpen(false)}>
               {it.label}
