@@ -1,102 +1,91 @@
 "use client";
-import React from "react";
 import { Icon, StatusPill } from "./Icons";
 
-const footStyles = {
-  foot: {
-    borderTop: "1px solid var(--hairline-strong)",
-    padding: "64px 0 48px",
-    background: "var(--canvas)",
-  },
-  inner: { maxWidth: 1200, margin: "0 auto", padding: "0 32px", display: "flex", flexDirection: "column", gap: 56 },
-  top: {
-    display: "grid", gridTemplateColumns: "minmax(0, 1.6fr) repeat(2, minmax(0, 1fr))",
-    gap: 48,
-  },
-  brand: {
-    display: "flex", flexDirection: "column", gap: 16, maxWidth: 360,
-  },
-  word: {
-    fontFamily: "var(--font-serif)", fontSize: 36, letterSpacing: "-0.6px",
-    color: "var(--ink)", lineHeight: 1.1, margin: 0,
-  },
-  blurb: { fontSize: 13, color: "var(--ash)", lineHeight: 1.55, margin: 0 },
-  col: { display: "flex", flexDirection: "column", gap: 10 },
-  colH: {
-    fontFamily: "var(--font-ui)", fontSize: 11, color: "var(--mute)",
-    letterSpacing: "0.6px", textTransform: "uppercase", marginBottom: 6,
-  },
-  colA: {
-    fontSize: 14, color: "var(--ash)", fontFamily: "var(--font-sans)",
-    transition: "color 120ms ease",
-  },
-  bottom: {
-    display: "flex", justifyContent: "space-between", alignItems: "center",
-    flexWrap: "wrap", gap: 16,
-    paddingTop: 24, borderTop: "1px solid var(--hairline)",
-  },
-  copy: { fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ash)" },
-  socials: { display: "flex", gap: 4 },
-  social: {
-    width: 36, height: 36, borderRadius: 9999, display: "grid", placeItems: "center",
-    color: "var(--ash)", boxShadow: "inset 0 0 0 1px transparent",
-    transition: "all 120ms ease", cursor: "pointer",
-  },
-};
+const pages = [
+  { href: "#work",     label: "Selected work" },
+  { href: "#skills",   label: "Skills" },
+  { href: "#about",    label: "About" },
+  { href: "#contact",  label: "Contact" },
+];
+
+const socials = [
+  { n: "github",   url: "https://github.com/ArzakaRaffan/" },
+  { n: "linkedin", url: "https://www.linkedin.com/in/arzakaraffan/" },
+  { n: "external", url: "https://heisenbergers.itch.io/" },
+  { n: "mail",     url: "mailto:arzakaraffan@gmail.com" },
+];
+
+const elsewhere = [
+  { href: "https://github.com/ArzakaRaffan/",          label: "GitHub" },
+  { href: "https://www.linkedin.com/in/arzakaraffan/", label: "LinkedIn" },
+  { href: "https://heisenbergers.itch.io/",             label: "itch.io · heisenbergers" },
+  { href: "mailto:arzakaraffan@gmail.com",              label: "Email" },
+];
 
 function Footer() {
   return (
-    <footer style={footStyles.foot}>
-      <div style={footStyles.inner}>
-        <div style={footStyles.top} data-grid="footer">
-          <div style={footStyles.brand}>
-            <p style={footStyles.word}>Made this thing<br/><em style={{ fontStyle: "italic" }}>between classes.</em></p>
-            <p style={footStyles.blurb}>
+    <footer className="border-t border-hairline-strong pt-16 pb-12 bg-canvas">
+      <div className="max-w-container mx-auto px-8 flex flex-col gap-14">
+
+        {/* Top grid */}
+        <div className="grid gap-12" style={{ gridTemplateColumns: "minmax(0,1.6fr) repeat(2,minmax(0,1fr))" }} data-grid="footer">
+          {/* Brand */}
+          <div className="flex flex-col gap-4 max-w-[360px]">
+            <p className="font-display text-[36px] text-ink leading-[1.1] tracking-[-0.6px] m-0">
+              Made this thing<br />
+              <em className="italic">between classes.</em>
+            </p>
+            <p className="text-[13px] text-ash leading-relaxed m-0">
               A small site, no tracking, no popups. If you&rsquo;ve scrolled this far,
               you&rsquo;re probably someone I&rsquo;d enjoy working with.
             </p>
-            <div style={{ marginTop: 8 }}>
+            <div className="mt-2">
               <StatusPill tone="green">All systems operational</StatusPill>
             </div>
           </div>
-          <div style={footStyles.col}>
-            <div style={footStyles.colH}>Pages</div>
-            <a href="#work" style={footStyles.colA}>Selected work</a>
-            <a href="#skills" style={footStyles.colA}>Skills</a>
-            <a href="#about" style={footStyles.colA}>About</a>
-            <a href="#contact" style={footStyles.colA}>Contact</a>
+
+          {/* Pages */}
+          <div className="flex flex-col gap-2.5">
+            <div className="font-ui text-[11px] text-mute tracking-[0.6px] uppercase mb-1.5">Pages</div>
+            {pages.map((p) => (
+              <a key={p.href} href={p.href}
+                 className="text-[14px] text-ash font-ui no-underline hover:text-ink transition-colors duration-100">
+                {p.label}
+              </a>
+            ))}
           </div>
-          <div style={footStyles.col}>
-            <div style={footStyles.colH}>Elsewhere</div>
-            <a href="https://github.com/ArzakaRaffan/" target="_blank" rel="noopener noreferrer" style={footStyles.colA}>GitHub</a>
-            <a href="https://www.linkedin.com/in/arzakaraffan/" target="_blank" rel="noopener noreferrer" style={footStyles.colA}>LinkedIn</a>
-            <a href="https://heisenbergers.itch.io/" target="_blank" rel="noopener noreferrer" style={footStyles.colA}>itch.io · heisenbergers</a>
-            <a href="mailto:arzakaraffan@gmail.com" style={footStyles.colA}>Email</a>
+
+          {/* Elsewhere */}
+          <div className="flex flex-col gap-2.5">
+            <div className="font-ui text-[11px] text-mute tracking-[0.6px] uppercase mb-1.5">Elsewhere</div>
+            {elsewhere.map((e) => (
+              <a key={e.label} href={e.href}
+                 target={e.href.startsWith("http") ? "_blank" : undefined}
+                 rel={e.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                 className="text-[14px] text-ash font-ui no-underline hover:text-ink transition-colors duration-100">
+                {e.label}
+              </a>
+            ))}
           </div>
         </div>
-        <div style={footStyles.bottom}>
-          <span style={footStyles.copy}>© 2026 Arzaka Raffan Mawardi.</span>
-          <div style={footStyles.socials}>
-            {[
-              { n: "github", url: "https://github.com/ArzakaRaffan/" },
-              { n: "linkedin", url: "https://www.linkedin.com/in/arzakaraffan/" },
-              { n: "external", url: "https://heisenbergers.itch.io/" },
-              { n: "mail", url: "mailto:arzakaraffan@gmail.com" },
-            ].map((s) => (
-              <a key={s.n} href={s.url} target={s.url.startsWith("http") ? "_blank" : undefined} rel={s.url.startsWith("http") ? "noopener noreferrer" : undefined} style={footStyles.social}
-                 onMouseEnter={(e) => {
-                   e.currentTarget.style.color = "var(--ink)";
-                   e.currentTarget.style.boxShadow = "inset 0 0 0 1px var(--hairline-strong)";
-                 }}
-                 onMouseLeave={(e) => {
-                   e.currentTarget.style.color = "var(--ash)";
-                   e.currentTarget.style.boxShadow = "inset 0 0 0 1px transparent";
-                 }}>
+
+        {/* Bottom bar */}
+        <div className="flex justify-between items-center flex-wrap gap-4 pt-6 border-t border-hairline">
+          <span className="font-mono text-[11px] text-ash">© 2026 Arzaka Raffan Mawardi.</span>
+          <div className="flex gap-1">
+            {socials.map((s) => (
+              <a key={s.n} href={s.url}
+                 target={s.url.startsWith("http") ? "_blank" : undefined}
+                 rel={s.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                 className="w-9 h-9 rounded-full grid place-items-center text-ash
+                            shadow-[inset_0_0_0_1px_transparent] hover:text-ink
+                            hover:shadow-border transition-all duration-100">
                 <Icon name={s.n} size={16} />
               </a>
             ))}
           </div>
         </div>
+
       </div>
     </footer>
   );

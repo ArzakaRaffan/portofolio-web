@@ -1,13 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* =========================================================================
    Portfolio Design System — Tokens
-   Resend-inspired: true-black canvas, serif display, atmospheric accent glows.
    ========================================================================= */
-
-/* ---- Fonts -------------------------------------------------------------- */
-/* Body / UI: TT Commons (brand font, shipped in /fonts).
-   Display:   DM Serif Display (substituting for Domaine Display — see README).
-   Code:      Geist Mono (Google Fonts).                                       */
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist+Mono:wght@400;500&display=swap");
 
 @font-face {
   font-family: "TT Commons";
@@ -424,6 +421,11 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    Layout — responsive grid overrides (was inline in index.html)
    ============================================================ */
+/* Games page responsive */
+@media (max-width: 900px) {
+  [data-game] { grid-template-columns: 1fr !important; gap: 24px !important; }
+}
+
 @media (max-width: 1023px) {
   h1, h2 { letter-spacing: -0.6px !important; }
   [data-grid="work-grid"]       { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }

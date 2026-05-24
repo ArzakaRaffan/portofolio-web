@@ -1,148 +1,127 @@
 "use client";
 import React from "react";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import { Icon } from "./Icons";
 import { Reveal } from "./Animations";
 
-// Highlights — awards, patents, publications. The CV one-pager moments.
-const hlStyles = {
-  section: { position: "relative", padding: "120px 0", overflow: "hidden", borderTop: "1px solid var(--hairline-strong)" },
-  glow: {
-    position: "absolute", inset: "-20% -10% 60% -10%",
-    background: "radial-gradient(closest-side at 22% 20%, rgba(255,197,61,0.20), transparent 65%)",
-    filter: "blur(80px)", pointerEvents: "none", zIndex: 0,
-  },
-  inner: { position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "0 32px" },
-  head: { display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 48, gap: 24, flexWrap: "wrap" },
-  title: {
-    fontFamily: "var(--font-serif)", fontSize: 56, lineHeight: 1.0,
-    letterSpacing: "-0.96px", color: "var(--ink)", margin: 0, fontWeight: 400,
-  },
-  sub: { fontSize: 15, color: "var(--mute)", fontFamily: "var(--font-sans)", maxWidth: 320, margin: 0, lineHeight: 1.5 },
-
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-    gap: 12,
-  },
-  card: {
-    position: "relative",
-    background: "var(--surface-card)",
-    borderRadius: 12,
-    boxShadow: "inset 0 0 0 1px var(--hairline-strong)",
-    padding: 24,
-    display: "flex", flexDirection: "column", gap: 14,
-    minHeight: 260,
-    overflow: "hidden",
-    textDecoration: "none",
-    color: "inherit",
-    transition: "box-shadow 240ms cubic-bezier(0.16,1,0.3,1)",
-  },
-  cardHover: { boxShadow: "inset 0 0 0 1px var(--hairline-bright)" },
-  cardGlow: {
-    position: "absolute", inset: "-30% -30% 40% -30%",
-    pointerEvents: "none", opacity: 0.5,
-    filter: "blur(50px)",
-  },
-  inner2: { position: "relative", display: "flex", flexDirection: "column", gap: 14, height: "100%" },
-  rank: {
-    fontFamily: "var(--font-serif)", fontSize: 56, lineHeight: 0.9,
-    letterSpacing: "-1.5px", color: "var(--ink)", fontWeight: 400,
-    margin: 0,
-  },
-  kind: {
-    fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--mute)",
-    letterSpacing: "0.6px", textTransform: "uppercase",
-  },
-  body: { display: "flex", flexDirection: "column", gap: 6, marginTop: "auto" },
-  h: {
-    fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.35,
-    color: "var(--ink)", margin: 0, fontWeight: 500, letterSpacing: "-0.2px",
-  },
-  meta: { fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--mute)", letterSpacing: "0.3px" },
-  link: {
-    display: "inline-flex", alignItems: "center", gap: 4,
-    fontFamily: "var(--font-ui)", fontSize: 12, color: "var(--ink)",
-    fontWeight: 500, marginTop: 4,
-  },
-};
-
 const highlights = [
   {
-    rank: "1st",
-    kind: "Game Jam · Champion",
-    title: "Garena Game Jam 3",
-    meta: "2026 · with Let Meow Out / Let Neigh Out",
-    glow: "radial-gradient(circle at 30% 30%, rgba(255,197,61,0.55), transparent 60%)",
-    link: null,
+    rank: "1st", kind: "Game Jam · Champion",
+    title: "Garena Game Jam 3", meta: "2026 · with Let Meow Out / Let Neigh Out",
+    glow: "radial-gradient(circle at 30% 30%, rgba(255,197,61,0.6), transparent 60%)",
+    accent: "rgba(255,197,61,0.7)", link: null,
   },
   {
-    rank: "2nd",
-    kind: "Game Jam · Runner-up",
-    title: "Garena Game Jam 2",
-    meta: "2025 · with Alien Brawl",
-    glow: "radial-gradient(circle at 30% 30%, rgba(59,158,255,0.5), transparent 60%)",
-    link: null,
+    rank: "2nd", kind: "Game Jam · Runner-up",
+    title: "Garena Game Jam 2", meta: "2025 · with Alien Brawl",
+    glow: "radial-gradient(circle at 30% 30%, rgba(59,158,255,0.55), transparent 60%)",
+    accent: "rgba(59,158,255,0.7)", link: null,
   },
   {
-    rank: "Patent",
-    kind: "HAKI · Indonesia",
-    title: "Petualangan Tala",
-    meta: "Mobile game · Hak Kekayaan Intelektual",
-    glow: "radial-gradient(circle at 30% 30%, rgba(34,255,153,0.45), transparent 60%)",
+    rank: "Patent", kind: "HAKI · Indonesia",
+    title: "Petualangan Tala", meta: "Mobile game · Hak Kekayaan Intelektual",
+    glow: "radial-gradient(circle at 30% 30%, rgba(34,255,153,0.5), transparent 60%)",
+    accent: "rgba(34,255,153,0.7)",
     link: "https://drive.google.com/file/d/1CJa9TDeLwPko_W6lw1vGPO3N-y3sVLle/view?usp=drivesdk",
   },
   {
-    rank: "Magazine",
-    kind: "Published Article",
-    title: "DPR Majalah Parlementaria",
-    meta: "Nov 2022 · Article Writer",
-    glow: "radial-gradient(circle at 30% 30%, rgba(255,89,0,0.4), transparent 60%)",
+    rank: "Mag.", kind: "Published Article",
+    title: "DPR Majalah Parlementaria", meta: "Nov 2022 · Article Writer",
+    glow: "radial-gradient(circle at 30% 30%, rgba(255,89,0,0.45), transparent 60%)",
+    accent: "rgba(255,89,0,0.7)",
     link: "https://drive.google.com/drive/folders/1JF_YeaTyjocJcUVOSI3sVzgIfYS2Z3IS",
   },
 ];
 
-function Highlights() {
-  const [hov, setHov] = React.useState(-1);
+function HighlightCard({ h, i }) {
+  const ref = React.useRef(null);
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const xPct = useTransform(mouseX, [0, 1], ["0%", "100%"]);
+  const yPct = useTransform(mouseY, [0, 1], ["0%", "100%"]);
+  const spotlight = useMotionTemplate`radial-gradient(180px circle at ${xPct} ${yPct}, rgba(255,255,255,0.06), transparent 70%)`;
+
+  const handleMove = (e) => {
+    if (!ref.current) return;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    mouseX.set((e.clientX - left) / width);
+    mouseY.set((e.clientY - top) / height);
+  };
+
+  const Tag = h.link ? "a" : "div";
+  const extra = h.link ? { href: h.link, target: "_blank", rel: "noopener noreferrer" } : {};
+
   return (
-    <section id="highlights" style={hlStyles.section}>
-      <div style={hlStyles.glow} className="glow-breathe" />
-      <div style={hlStyles.inner}>
+    <Reveal delay={i * 80}>
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMove}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <Tag {...extra}
+             className="relative bg-surface-card rounded-2xl shadow-border p-6 flex flex-col gap-3.5 min-h-[280px] overflow-hidden no-underline text-inherit block cursor-pointer group">
+          {/* Glow blob */}
+          <motion.div
+            className="absolute pointer-events-none"
+            style={{ inset: "-30% -30% 40% -30%", background: h.glow, filter: "blur(50px)" }}
+            initial={{ opacity: 0.5, scale: 1 }}
+            whileHover={{ opacity: 0.9, scale: 1.25 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          />
+
+          {/* Mouse spotlight */}
+          <motion.div className="absolute inset-0 pointer-events-none rounded-2xl" style={{ background: spotlight }} />
+
+          {/* Border glow on hover */}
+          <motion.div
+            className="absolute inset-0 rounded-2xl pointer-events-none"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            style={{ boxShadow: `inset 0 0 0 1px ${h.accent}` }}
+            transition={{ duration: 0.2 }}
+          />
+
+          <div className="relative flex flex-col gap-3.5 h-full z-10">
+            <span className="font-mono text-[10px] text-mute tracking-[0.6px] uppercase">{h.kind}</span>
+            <h3 className="font-display font-normal m-0"
+                style={{ fontSize: "clamp(48px, 7vw, 72px)", lineHeight: 0.88, letterSpacing: "-2px",
+                         backgroundImage: `linear-gradient(135deg, #fcfdff 40%, ${h.accent})`,
+                         WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              {h.rank}
+            </h3>
+            <div className="flex flex-col gap-1.5 mt-auto">
+              <p className="font-ui text-[15px] leading-[1.3] text-ink m-0 font-medium tracking-[-0.2px]">{h.title}</p>
+              <span className="font-mono text-[11px] text-mute tracking-[0.3px]">{h.meta}</span>
+              {h.link && (
+                <span className="inline-flex items-center gap-1 font-ui text-[12px] text-ink font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  View <Icon name="arrow-up-right" size={11} />
+                </span>
+              )}
+            </div>
+          </div>
+        </Tag>
+      </motion.div>
+    </Reveal>
+  );
+}
+
+function Highlights() {
+  return (
+    <section id="highlights" className="relative py-[120px] overflow-hidden border-t border-hairline-strong">
+      <div className="absolute pointer-events-none animate-breathe"
+           style={{ inset: "-20% -10% 60% -10%", background: "radial-gradient(closest-side at 22% 20%, rgba(255,197,61,0.18), transparent 65%)", filter: "blur(80px)", zIndex: 0 }} />
+      <div className="relative z-10 max-w-container mx-auto px-8">
         <Reveal>
-          <div style={hlStyles.head}>
-            <h2 style={hlStyles.title}>Highlights.</h2>
-            <p style={hlStyles.sub}>A couple of jam wins, one patent, and an article in a national magazine. The CV-paper kind of moments.</p>
+          <div className="flex items-end justify-between mb-14 gap-6 flex-wrap">
+            <h2 className="font-display text-[56px] leading-none tracking-[-0.96px] text-ink m-0 font-normal">Highlights.</h2>
+            <p className="text-[15px] text-mute max-w-[320px] m-0 leading-relaxed">
+              A couple of jam wins, one patent, and an article in a national magazine.
+            </p>
           </div>
         </Reveal>
-        <div style={hlStyles.grid} data-grid="highlights-grid">
-          {highlights.map((h, i) => {
-            const Wrapper = h.link ? "a" : "div";
-            const wrapperProps = h.link ? { href: h.link, target: "_blank", rel: "noopener noreferrer" } : {};
-            return (
-              <Reveal key={h.title} delay={i * 80}>
-                <Wrapper {...wrapperProps}
-                         style={{ ...hlStyles.card, ...(hov === i ? hlStyles.cardHover : {}) }}
-                         onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(-1)}>
-                <div style={{
-                  ...hlStyles.cardGlow, background: h.glow,
-                  transition: "opacity 300ms ease, transform 400ms cubic-bezier(0.16,1,0.3,1)",
-                  opacity: hov === i ? 0.72 : 0.5,
-                  transform: hov === i ? "scale(1.18)" : "scale(1)",
-                }}></div>
-                <div style={hlStyles.inner2}>
-                  <span style={hlStyles.kind}>{h.kind}</span>
-                  <h3 style={hlStyles.rank}>{h.rank}</h3>
-                  <div style={hlStyles.body}>
-                    <p style={hlStyles.h}>{h.title}</p>
-                    <span style={hlStyles.meta}>{h.meta}</span>
-                    {h.link && (
-                      <span style={hlStyles.link}>View <Icon name="arrow-up-right" size={11} /></span>
-                    )}
-                  </div>
-                </div>
-                </Wrapper>
-              </Reveal>
-            );
-          })}
+        <div className="grid grid-cols-4 gap-3" data-grid="highlights-grid">
+          {highlights.map((h, i) => <HighlightCard key={h.title} h={h} i={i} />)}
         </div>
       </div>
     </section>
