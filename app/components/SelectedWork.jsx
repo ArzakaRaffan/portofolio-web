@@ -56,6 +56,13 @@ const projects = [
     embed: "https://itch.io/embed-upload/12736154?color=43276f",
   },
   {
+    kind: "Web", kindColor: "#3b9eff", year: 2026, solo: true,
+    title: "Letterboxd Roast",
+    desc: "Enter your Letterboxd username and let Claude judge your entire personality based on your watch history. Fetches your public profile and roasts you accordingly.",
+    img: "/assets/projects/letterboxd-roast.png", stack: "Next.js · Anthropic API",
+    url: "https://letterboxd-roast.vercel.app/",
+  },
+  {
     kind: "Web", kindColor: "#3b9eff", year: 2024, solo: false,
     title: "Gallery Fasilkom",
     desc: "A portfolio platform for Fasilkom UI students. SSO login, uploads, the whole pipeline, built with the PPL team.",
