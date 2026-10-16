@@ -9,6 +9,7 @@ function Cursor() {
   const [on, setOn] = useState(false);
   const [hover, setHover] = useState(false);
   const [down, setDown] = useState(false);
+  const [hide, setHide] = useState(false);
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
   const rx = useSpring(x, { stiffness: 350, damping: 30, mass: 0.5 });
@@ -21,6 +22,7 @@ function Cursor() {
     const move = (e) => {
       x.set(e.clientX); y.set(e.clientY);
       setHover(!!e.target.closest?.("a, button, [role=tab]"));
+      setHide(!!e.target.closest?.("[data-cursor=hide]"));
     };
     const d = () => setDown(true);
     const u = () => setDown(false);
@@ -37,7 +39,7 @@ function Cursor() {
 
   if (!on) return null;
   return (
-    <div className="pointer-events-none fixed inset-0 z-[90] mix-blend-difference" aria-hidden="true">
+    <div className={`pointer-events-none fixed inset-0 z-[90] mix-blend-difference transition-opacity duration-200 ${hide ? "opacity-0" : ""}`} aria-hidden="true">
       <motion.div className="absolute left-0 top-0" style={{ x, y }}>
         <motion.div
           className="h-1.5 w-1.5 rounded-full bg-paper"

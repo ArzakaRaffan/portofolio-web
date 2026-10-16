@@ -134,6 +134,7 @@ function Row({ p, i, onHover, open, onToggle }) {
     <motion.li
       variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
       className="border-t border-line-inv"
+      data-cursor="hide"
       onPointerEnter={(e) => e.pointerType === "mouse" && onHover(i)}
       onPointerLeave={() => onHover(null)}
     >

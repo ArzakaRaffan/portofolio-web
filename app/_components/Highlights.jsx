@@ -54,11 +54,6 @@ export function Highlights() {
                 className="group relative flex h-full min-h-[320px] flex-col justify-between overflow-hidden p-5 md:min-h-[380px] md:p-6"
               >
                 <span className="absolute inset-0 origin-bottom scale-y-0 bg-ink transition-transform duration-700 ease-out group-hover:scale-y-100" aria-hidden="true" />
-                <span
-                  className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ background: "radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(255,77,0,0.35), transparent 70%)" }}
-                  aria-hidden="true"
-                />
                 <span className="relative flex justify-between">
                   <span className="label transition-colors duration-500 group-hover:text-paper/60">Fig. {String(i + 1).padStart(2, "0")}</span>
                   <span className="label text-accent">{h.kind}</span>
@@ -66,7 +61,8 @@ export function Highlights() {
                 <span className="relative text-[clamp(72px,8vw,128px)] font-medium leading-none tracking-[-0.06em] transition-colors duration-500 group-hover:text-paper">
                   <BigValue value={h.big} />
                 </span>
-                <span className="relative flex flex-col gap-1.5">
+                {/* Fixed-height footer so titles line up across cards (2-line meta, "View document" row) */}
+                <span className="relative flex min-h-[4.75rem] flex-col gap-1.5">
                   <span className="text-lg font-medium leading-tight tracking-[-0.01em] transition-colors duration-500 group-hover:text-paper">{h.label}</span>
                   <span className="label transition-colors duration-500 group-hover:text-paper/60">{h.meta}</span>
                   {h.url && (
