@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="miter" stroke-linecap="square">
+  <title>AR ligature</title>
+  <path d="M14 86 L37 14 H62 A18 18 0 0 1 62 50 H25 M56 50 L80 86"/>
+  <rect x="80" y="12" width="10" height="10" fill="#FF4D00" stroke="none"/>
+</svg>

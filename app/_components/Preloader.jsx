@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE, EASE_IN } from "./ui";
 import { lenis } from "./Providers";
+import { Logo } from "./Logo";
 
 const LINES = ["Booting", "Compiling shaders", "Placing pixels", "Spawning player", "Ready"];
 const DURATION = 1900;
@@ -68,6 +69,9 @@ export function Preloader() {
             <div className="flex justify-between font-mono text-[11px] uppercase tracking-[0.08em] text-paper/60">
               <span>// Arzaka Raffan — Portfolio</span>
               <span>v2.0</span>
+            </div>
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <Logo draw delay={0.1} className="h-20 w-20 md:h-28 md:w-28" />
             </div>
             <div className="flex items-end justify-between gap-6">
               <motion.div

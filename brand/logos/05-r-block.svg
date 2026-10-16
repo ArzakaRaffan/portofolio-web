@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+  <title>R block</title>
+  <rect x="18" y="14" width="24" height="72"/>
+  <path d="M42 14 H58 A18 18 0 0 1 58 50 H42 Z"/>
+  <path d="M48 50 H64 L84 86 H68 Z" fill="#FF4D00"/>
+</svg>
