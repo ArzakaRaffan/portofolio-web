@@ -24,10 +24,13 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
         <Providers>{children}</Providers>
-        {/* Umami: page views + clicks on elements with data-umami-event (projects, CV). Off until the env var is set. */}
-        {process.env.NEXT_PUBLIC_UMAMI_ID && (
-          <Script src="https://cloud.umami.is/script.js" data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID} strategy="afterInteractive" />
-        )}
+        {/* Umami: page views + clicks on elements with data-umami-event (projects, CV). Counts the live domain only, not localhost. */}
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="f8edb1f2-3556-4813-88ac-cb6232c890bc"
+          data-domains={new URL(profile.site).host}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
