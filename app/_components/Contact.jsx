@@ -1,9 +1,8 @@
 "use client";
-import { useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { SectionHead } from "./About";
 import { PixelBand } from "./PixelBand";
-import { Wordmark } from "./Wordmark";
 import { Clock, EASE, Magnetic, Scramble, SplitReveal } from "./ui";
 import { profile } from "@/lib/data";
 
@@ -45,14 +44,10 @@ function CopyEmail() {
 }
 
 export function Contact() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
-  const markY = useTransform(scrollYProgress, [0.3, 1], ["60%", "0%"]);
-
   return (
-    <footer ref={ref} id="contact" className="relative bg-ink text-paper">
+    <footer id="contact" className="relative bg-ink text-paper">
       <PixelBand mode="in" className="bottom-full" />
-      <div className="frame pt-28 md:pt-40">
+      <div className="frame pb-10 pt-28 md:pt-40">
         <SectionHead index="05" title="Contact" note="Open to projects and collaboration" inverted />
 
         <div className="mt-14 grid grid-cols-1 items-end gap-12 md:mt-24 md:grid-cols-[1fr_auto]">
@@ -99,13 +94,6 @@ export function Contact() {
             </a>
           </div>
         </div>
-      </div>
-
-      {/* Oversized wordmark rises as the page ends; see Wordmark for the cursor play */}
-      <div className="mt-16 overflow-hidden" aria-hidden="true">
-        <motion.div style={{ y: markY }}>
-          <Wordmark text={`${profile.short}.`} />
-        </motion.div>
       </div>
     </footer>
   );

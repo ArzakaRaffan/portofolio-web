@@ -45,7 +45,7 @@ export function About() {
           viewport={{ once: true, margin: "0px 0px -15% 0px" }}
           transition={{ duration: 1.2, ease: EASE }}
         >
-          <AsciiPortrait src={profile.portrait} alt={profile.name} />
+          <AsciiPortrait src={profile.portrait} depth={profile.portraitDepth} alt={profile.name} />
         </motion.div>
 
         <div className="flex flex-col gap-12 md:col-span-6 md:col-start-7">
