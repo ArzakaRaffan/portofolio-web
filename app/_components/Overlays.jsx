@@ -22,7 +22,7 @@ function Cursor() {
     const move = (e) => {
       x.set(e.clientX); y.set(e.clientY);
       setHover(!!e.target.closest?.("a, button, [role=tab]"));
-      setHide(!!e.target.closest?.("[data-cursor=hide]"));
+      setHide(!!e.target.closest?.("[data-cursor]"));
     };
     const d = () => setDown(true);
     const u = () => setDown(false);

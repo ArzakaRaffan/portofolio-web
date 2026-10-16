@@ -40,6 +40,8 @@
 
 /* Custom cursor replaces the native one on fine pointers */
 html.has-cursor, html.has-cursor * { cursor: none !important; }
+/* ...except over the portrait, where the round cursor would sit on the face */
+html.has-cursor [data-cursor=native], html.has-cursor [data-cursor=native] * { cursor: crosshair !important; }
 
 /* Lenis */
 html.lenis, html.lenis body { height: auto; }
