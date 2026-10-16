@@ -1,28 +1,29 @@
-import { Nav } from "./components/Nav";
-import { Hero } from "./components/Hero";
-import { SelectedWork } from "./components/SelectedWork";
-import { Highlights } from "./components/Highlights";
-import { Skills } from "./components/Skills";
-import { Experience } from "./components/Experience";
-import { About } from "./components/About";
-import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
+import { Preloader } from "./_components/Preloader";
+import { Nav } from "./_components/Nav";
+import { Overlays } from "./_components/Overlays";
+import { Hero } from "./_components/Hero";
+import { About } from "./_components/About";
+import { Work } from "./_components/Work";
+import { Highlights } from "./_components/Highlights";
+import { Experience } from "./_components/Experience";
+import { Ribbon } from "./_components/Ribbon";
+import { Contact } from "./_components/Contact";
 
 export default function Home() {
   return (
     <>
+      <Preloader />
+      <Overlays />
       <Nav />
-      <main>
-        <span id="top"></span>
+      <main id="top">
         <Hero />
-        <SelectedWork />
-        <Highlights />
-        <Skills />
-        <Experience />
         <About />
-        <Contact />
+        <Work />
+        <Highlights />
+        <Experience />
+        <Ribbon />
       </main>
-      <Footer />
+      <Contact />
     </>
   );
 }

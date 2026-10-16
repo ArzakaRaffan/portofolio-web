@@ -1,34 +1,26 @@
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Providers } from "./_components/Providers";
 import "./globals.css";
 
 export const metadata = {
   title: "Arzaka Raffan Mawardi · Web & game developer",
-  description:
-    "Computer Science student at Universitas Indonesia. I build websites for real users and small games for itch.io.",
+  description: "Web and game developer. Computer Science at Universitas Indonesia. Websites for real users, games that win jams.",
   openGraph: {
     title: "Arzaka Raffan Mawardi",
-    description: "Web & game developer · Fasilkom UI '23",
+    description: "Web & game developer · Fasilkom UI",
     type: "website",
   },
 };
 
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: "#000000",
-};
+export const viewport = { themeColor: "#F2F1EC" };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>{children}</body>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
