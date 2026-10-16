@@ -93,7 +93,13 @@ export function Hero() {
           <span className="label">// {profile.role}</span>
           <span className="label hidden md:block">{profile.name}</span>
           <span className="label hidden md:block">Selected work 2024—26</span>
-          <span className="label text-right">Index ’26</span>
+          <span className="label flex items-center justify-end gap-2">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-75 motion-reduce:animate-none" />
+              <span className="relative h-2 w-2 rounded-full bg-accent" />
+            </span>
+            {profile.status}
+          </span>
         </motion.div>
 
         <motion.h1
@@ -136,6 +142,12 @@ export function Hero() {
           </motion.div>
           <motion.div {...fade(0.75)} className="flex justify-between gap-4 md:flex-col md:items-end">
             <span className="label">{profile.city} · <Clock /> WIB</span>
+            {profile.cv && (
+              <a href={profile.cv} target="_blank" rel="noopener noreferrer" data-umami-event="Open CV"
+                className="label pointer-events-auto border-b border-ink pb-0.5 transition-colors duration-300 hover:border-accent hover:text-accent">
+                <Scramble text="Download CV ↓" hover />
+              </a>
+            )}
             <span className="label hidden text-ink-3 md:block">
               <Scramble text="Move over the name. Click the field." delay={1.4} />
             </span>

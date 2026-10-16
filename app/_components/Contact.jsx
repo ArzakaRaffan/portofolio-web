@@ -48,7 +48,7 @@ export function Contact() {
     <footer id="contact" className="relative bg-ink text-paper">
       <PixelBand mode="in" className="bottom-full" />
       <div className="frame pb-10 pt-28 md:pt-40">
-        <SectionHead index="05" title="Contact" note="Open to projects and collaboration" inverted />
+        <SectionHead index="05" title="Contact" note={`${profile.status} · open to collaboration`} inverted />
 
         <div className="mt-14 grid grid-cols-1 items-end gap-12 md:mt-24 md:grid-cols-[1fr_auto]">
           <div>
@@ -78,10 +78,15 @@ export function Contact() {
             ))}
           </div>
           <div className="flex flex-col gap-2">
-            <span className="label text-paper/50">Games</span>
+            <span className="label text-paper/50">{profile.cv ? "Games & CV" : "Games"}</span>
             <a href={profile.gamesUrl} target="_blank" rel="noopener noreferrer" className="w-fit text-[15px] text-paper/80 hover:text-accent">
               <Scramble text="Play my games ↗" hover />
             </a>
+            {profile.cv && (
+              <a href={profile.cv} target="_blank" rel="noopener noreferrer" data-umami-event="Open CV" className="w-fit text-[15px] text-paper/80 hover:text-accent">
+                <Scramble text="Download CV ↓" hover />
+              </a>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <span className="label text-paper/50">Local time</span>

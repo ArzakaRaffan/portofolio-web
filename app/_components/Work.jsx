@@ -67,7 +67,7 @@ function Preview({ active, list, x, y }) {
   );
 }
 
-function CaseStudy({ study, url }) {
+function CaseStudy({ study, url, title }) {
   return (
     <motion.div
       initial={{ height: 0, opacity: 0 }}
@@ -92,7 +92,7 @@ function CaseStudy({ study, url }) {
               </li>
             ))}
           </ul>
-          <a href={url} target="_blank" rel="noopener noreferrer" className="label mt-6 self-start text-accent underline-offset-4 hover:underline">
+          <a href={url} target="_blank" rel="noopener noreferrer" {...track("Visit project", title)} className="label mt-6 self-start text-accent underline-offset-4 hover:underline">
             Visit project ↗
           </a>
         </div>
@@ -100,6 +100,9 @@ function CaseStudy({ study, url }) {
     </motion.div>
   );
 }
+
+// Umami click events (see layout.jsx): which projects get opened.
+const track = (event, project) => ({ "data-umami-event": event, "data-umami-event-project": project });
 
 function Row({ p, i, onHover, open, onToggle }) {
   const inner = (
@@ -139,11 +142,11 @@ function Row({ p, i, onHover, open, onToggle }) {
       onPointerLeave={() => onHover(null)}
     >
       {p.study ? (
-        <button type="button" className={cls} onClick={onToggle} aria-expanded={open}>{inner}</button>
+        <button type="button" className={cls} onClick={onToggle} aria-expanded={open} {...(!open && track("Open case study", p.title))}>{inner}</button>
       ) : (
-        <a className={cls} href={p.url} target="_blank" rel="noopener noreferrer">{inner}</a>
+        <a className={cls} href={p.url} target="_blank" rel="noopener noreferrer" {...track("Visit project", p.title)}>{inner}</a>
       )}
-      {p.study && <AnimatePresence initial={false}>{open && <CaseStudy study={p.study} url={p.url} />}</AnimatePresence>}
+      {p.study && <AnimatePresence initial={false}>{open && <CaseStudy study={p.study} url={p.url} title={p.title} />}</AnimatePresence>}
     </motion.li>
   );
 }
