@@ -2,11 +2,13 @@
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AsciiField } from "./AsciiField";
+import { VapourText } from "./VapourText";
 import { useIntroDone } from "./Preloader";
 import { Clock, EASE, Magnetic, Scramble } from "./ui";
 import { profile } from "@/lib/data";
 
 const [FIRST, LAST] = profile.short.split(" ");
+const ROLES = ["Web developer", "Game developer", "Teaching assistant", "Jam champion"];
 
 function Chars({ text, ready, delay, letters }) {
   return (
@@ -113,9 +115,15 @@ export function Hero() {
         </motion.h1>
 
         <div className="mt-8 grid grid-cols-1 items-end gap-6 border-t border-line pt-4 md:mt-10 md:grid-cols-[1fr_auto_1fr]">
-          <motion.p {...fade(0.55)} className="max-w-[34ch] text-[15px] leading-relaxed text-ink-2 md:text-base">
-            Web &amp; game developer building fast, considered interfaces and small worlds you can play in.
-          </motion.p>
+          <motion.div {...fade(0.55)} className="flex flex-col gap-3">
+            <span className="flex items-baseline gap-3 text-[clamp(24px,2.6vw,40px)] font-medium leading-none tracking-[-0.03em]">
+              <span className="font-mono text-[0.5em] text-accent" aria-hidden="true">▸</span>
+              <VapourText words={ROLES} />
+            </span>
+            <p className="max-w-[34ch] text-[15px] leading-relaxed text-ink-2 md:text-base">
+              Building fast, considered interfaces and small worlds you can play in.
+            </p>
+          </motion.div>
           <motion.div {...fade(0.65)} className="pointer-events-auto hidden md:block">
             <Magnetic strength={0.4}>
               <a href="#work" className="group grid h-24 w-24 place-items-center rounded-full bg-ink text-paper transition-transform duration-300 ease-out hover:scale-105">

@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { SectionHead } from "./About";
 import { PixelBand } from "./PixelBand";
+import { Wordmark } from "./Wordmark";
 import { Clock, EASE, Magnetic, Scramble, SplitReveal } from "./ui";
 import { profile } from "@/lib/data";
 
@@ -100,26 +101,10 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Oversized wordmark rises as the page ends */}
+      {/* Oversized wordmark rises as the page ends; see Wordmark for the cursor play */}
       <div className="mt-16 overflow-hidden" aria-hidden="true">
-        <motion.div
-          style={{ y: markY }}
-          className="select-none whitespace-nowrap text-center text-[14.5vw] font-medium leading-[0.8] tracking-[-0.065em] text-paper"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "0px 0px -5% 0px" }}
-          variants={{ show: { transition: { staggerChildren: 0.04 } } }}
-        >
-          {[...`${profile.short}.`].map((c, i, arr) => (
-            <motion.span
-              key={i}
-              className={`inline-block ${i === arr.length - 1 ? "text-accent" : ""}`}
-              variants={{ hidden: { y: "100%", rotate: 8 }, show: { y: "0%", rotate: 0, transition: { duration: 1.1, ease: EASE } } }}
-              whileHover={{ y: "-12%", color: "#FF4D00", transition: { duration: 0.25, ease: EASE } }}
-            >
-              {c === " " ? " " : c}
-            </motion.span>
-          ))}
+        <motion.div style={{ y: markY }}>
+          <Wordmark text={`${profile.short}.`} />
         </motion.div>
       </div>
     </footer>
