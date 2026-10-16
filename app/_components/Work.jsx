@@ -6,7 +6,11 @@ import { PixelBand } from "./PixelBand";
 import { EASE, Reveal } from "./ui";
 import { projects } from "@/lib/data";
 
-const FILTERS = [["All", () => true], ["Web", (p) => p.kind === "Web"], ["Games", (p) => p.kind === "Game"]];
+// Project thumbnail props: looping muted video (poster = image) when available, else the image.
+const media = (p) =>
+  p.video ? { src: p.video, poster: p.img, autoPlay: true, muted: true, loop: true, playsInline: true } : { src: p.img, alt: "" };
+
+const FILTERS =[["All", () => true], ["Web", (p) => p.kind === "Web"], ["Games", (p) => p.kind === "Game"]];
 
 /** Floating preview that follows the cursor over the list; images slide like a film strip. */
 /**
@@ -21,6 +25,7 @@ function Preview({ active, list, x, y }) {
   const shown = active !== null && !!list[active];
   if (shown) last.current = { p: list[active], i: active };
   const { p, i } = last.current;
+  const Media = p?.video ? motion.video : motion.img;
 
   return (
     <motion.div className="pointer-events-none fixed left-0 top-0 z-40 hidden md:block" style={{ x: sx, y: sy }} aria-hidden="true">
@@ -42,9 +47,8 @@ function Preview({ active, list, x, y }) {
                 exit={{ opacity: 1, transition: { duration: 0.7 } }}
                 transition={{ duration: 0.7, ease: EASE }}
               >
-                <motion.img
-                  src={p.img}
-                  alt=""
+                <Media
+                  {...media(p)}
                   className="h-full w-full object-cover"
                   initial={{ scale: 1.25 }}
                   animate={{ scale: 1 }}
@@ -102,7 +106,9 @@ function Row({ p, i, onHover, open, onToggle }) {
     <>
       <span className="label hidden text-paper/50 md:block">{String(i + 1).padStart(2, "0")}</span>
       <span className="flex min-w-0 flex-col gap-3 md:flex-row md:items-baseline md:gap-6">
-        <img src={p.img} alt="" className="aspect-[16/10] w-full object-cover md:hidden" />
+        {p.video
+          ? <video {...media(p)} className="aspect-[16/10] w-full object-cover md:hidden" />
+          : <img src={p.img} alt="" className="aspect-[16/10] w-full object-cover md:hidden" />}
         <span className="truncate text-[clamp(28px,4.4vw,64px)] font-medium leading-none tracking-[-0.04em] transition-transform duration-500 ease-out group-hover:translate-x-3">
           {p.title}
         </span>
